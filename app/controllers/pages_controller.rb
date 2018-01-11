@@ -4,6 +4,14 @@ class PagesController < ApplicationController
   include ChartsNationality
   skip_before_action :authenticate_user!, only: [:home]
   
+  # 1 we are in the analytics page, and i sign in, with email and password
+  # 2 once i sign in in the analytics, i make a request to the api from the way book.
+  # 3 and i send email and password
+  # 4 this last password we should encode it for security reasons. we don't seend the raw password
+  # 5 when the rquest gets to the api way book
+  # 6 way book will perform the normal devise log in using email and password
+  # 7 if the login is succesfull, it should return the user token to the analytics app
+  # 8 subsequent requests, will be made with email and token.
 
   def analytics
   	url = "http://localhost:3000/api/v1/profiles?user_email=albert.montolio@waygroup.de&user_token=yJ1i5DsvwxEFHRheXNQ1"
