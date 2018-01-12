@@ -10,11 +10,19 @@ class PagesController < ApplicationController
   # 4 this last password we should encode it for security reasons. we don't seend the raw password
   # 5 when the rquest gets to the api way book
   # 6 way book will perform the normal devise log in using email and password
+  # create the sessions controller, update the routes
+  # decode the password, call super (super afterwards)
+  # then, 
   # 7 if the login is succesfull, it should return the user token to the analytics app
+  # g
   # 8 subsequent requests, will be made with email and token.
 
   def analytics
-  	url = "http://localhost:3000/api/v1/profiles?user_email=albert.montolio@waygroup.de&user_token=yJ1i5DsvwxEFHRheXNQ1"
+    raise
+    user_token = session["authentication_token"]
+    current_user_email = current_user.email
+
+  	url = "http://localhost:3000/api/v1/profiles?user_email=#{current_user_email}&user_token=#{user_token}"
 
   	html_file = open(url).read
   	json_response = JSON.parse(html_file)
