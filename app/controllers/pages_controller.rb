@@ -21,7 +21,7 @@ class PagesController < ApplicationController
     user_token = session["authentication_token"]
     current_user_email = current_user.email
 
-  	url = "http://localhost:3000/api/v1/profiles?user_email=#{current_user_email}&user_token=#{user_token}"
+  	url = "https://way-book.herokuapp.com/api/v1/profiles?user_email=#{current_user_email}&user_token=#{user_token}"
 
   	html_file = open(url).read
   	json_response = JSON.parse(html_file)
