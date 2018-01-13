@@ -13,13 +13,18 @@ class SessionsController < Devise::SessionsController
 		email = user_params[:email]
 		password = encrypt_password(user_params[:password])
 
-		api_url = 'https://way-book.herokuapp.com/profiles/201/users/sign_in.json'
+		api_url = 'https://way-book.herokuapp.com/users/sign_in.json'
 		# .json this is to force devise to send us a json response, instead of the normal redirect 
 		response = HTTParty.post(
 			api_url, body: {
 				user: {email: email, password: password}
 			}
 		)
+		puts "------------------------------------"
+		puts "response.body"
+		puts "------------------------------------"
+
+		puts response.body
 		JSON.parse(response.body)
 	end
 
