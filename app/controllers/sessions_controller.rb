@@ -20,11 +20,6 @@ class SessionsController < Devise::SessionsController
 				user: {email: email, password: password}
 			}
 		)
-		puts "------------------------------------"
-		puts "response.body"
-		puts "------------------------------------"
-
-		puts response.body
 		JSON.parse(response.body)
 	end
 
