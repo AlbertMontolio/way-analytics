@@ -1,58 +1,81 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
-  <% end %>
+<div class="navbar">
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <% if user_signed_in? %>
-
-      <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+  <div class="left-navbar">
+    <%= link_to root_path do  %>
+      <div class="logo">
+        <%= image_tag("way-analytics", size: "125x25") %>
       </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
+  <div class="right-navbar">
+    
+
+    <div class="other-apps">
+        <div class="dropdown other-apps">
+      <i class="fa fa-th icon" aria-hidden="true" class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"></i>
+
+      <div class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <div class="other-apps-content">
+          <div class="roww">
+            <%= link_to root_path, class: "link colo1" do  %>
+              <i class="fa fa-pie-chart icon" aria-hidden="true"></i>
+              <div class="text">
+                WAY Data
+              </div>
+            <% end %>
+            <a target="_blank" href="http://www.zep.de/" class="link colo2">
+              <i class="fa fa-clock-o icon" aria-hidden="true"></i>
+              <div class="text">
+                WAY ZEP
+              </div>
+            </a>
+          </div>
+          <div class="roww">
+            <a target="_blank" href="https://schulungssystem.waygroup.de/" class="link colo3">
+              <i class="fa fa-file-text-o icon" aria-hidden="true"></i>
+              <div class="text">
+                W.H.A.T.
+              </div>
+            </a>
+            <a target="_blank" href="http://www.waygroup.de/" class="link colo4">
+              <i class="fa fa-home icon" aria-hidden="true"></i>
+              <div class="text">
+                Way Group
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <!-- Profile picture with dropdown list -->
+      <% if user_signed_in? %>
+        <div class="dropdown">
+            <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar avatar-cursor dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+
+            <div class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <div class="avatar-navbar-content-wrapper">
+                <div class="user-name">
+                  <%= current_user.email %>
+                </div>
+                <%= link_to destroy_user_session_path, method: :delete, class: "link" do %>
+                  <i class="fa fa-sign-out icon"></i>
+                  Log out
+                <% end %>
+            </div>
+          </div>
+            
+        </div>
+    <% else %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+          
   </div>
+    
 </div>
+
+
+
 
