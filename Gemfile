@@ -32,4 +32,5 @@ end
 # added gem
 gem "rails-ujs"
 gem "httparty"
+gem "jquery-rails"
 
