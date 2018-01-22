@@ -4,7 +4,9 @@
 			WAY Book Analytics
 		</div>
 		<div class="cover-pic-wrapper">
-			<%= image_tag("analytics-charts", size: "630x389") %>
+			<%= link_to analytics_path do  %>
+				<%= image_tag("analytics-charts", size: "630x389") %>
+			<% end %>
 		</div>
 		<div class="sentence">
 			Decision-making with live company data

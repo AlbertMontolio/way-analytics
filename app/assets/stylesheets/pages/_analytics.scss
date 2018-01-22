@@ -1,3 +1,52 @@
+.analytics-page {
+	background-color: rgb(250,250,250);
+	margin-top: 60px;
+	// display: flex;
+	// flex-direction: row;
+	.left-menu {
+		background-color: rgb(245,245,245);
+		// flex-basis: 200px;
+		// flex-shrink: 0;
+		// flex-grow: 0;
+		position: fixed;
+		height: 100vh;
+		color: rgb(100,100,100);
+		font-size: 14px;
+		font-weight: ligther;
+		padding: 60px 20px;
+		.item {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin-bottom: 10px;
+			&:hover {
+				color: black;
+				cursor: pointer;
+			}
+		}
+		.icon-wrapper {
+			width: 20px;
+			display: flex;
+			justify-content: center;
+			margin-right: 15px;
+		}
+	}
+	.charts-wrapper {
+		// background-color: pink;
+		margin-left: 200px;
+		padding-top: 40px;
+		// flex-grow: 1;
+		.title-header {
+			margin-top: 60px;
+			font-size: 16px;
+			font-weight: bold;
+			color: rgb(40,40,40);
+			margin-left: 33px;
+		}
+	}
+}
+
+
 .charts-row {
 	display: flex;
 	flex-direction: row;

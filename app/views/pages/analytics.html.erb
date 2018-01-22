@@ -1,147 +1,71 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="analytics-page">
 
-<div class="charts">
-	<h1>Nationalty Analysis</h1>
-	<div class="charts-row">
-		<!-- CHART 1: Num. employees per nationality -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Num. employees per nationality
+	<%= render "pages/analytics/left_menu" %>
+
+	<div class="charts-wrapper">
+
+		<div class="title-header">
+			Number employees
+		</div>
+
+		<div class="charts-row">
+			<!-- CHART 1:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_num_employees_per_division" %>
 			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="num_employees_per_nationality" height="100" width="100"></canvas>
+			<!-- CHART 2:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_num_employees_per_nationality" %>
 			</div>
 		</div>
 
-		<!-- CHART 5: Num -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Num. employees per nationality Engineering
+		<div class="title-header">
+			Number employees per division
+		</div>
+
+		<div class="charts-row">
+			<!-- CHART 3:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_num_employees_per_nationality_engineering" %>
 			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="num_employees_per_nationality_engineering" height="100" width="100"></canvas>
+			<!-- CHART 4:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_num_employees_per_nationality_people" %>
 			</div>
 		</div>
-		<!-- CHART 6: Num -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Num. employees per nationality People
+
+		<div class="title-header">
+			Age analysis
+		</div>
+
+		<div class="charts-row">
+			<!-- CHART 3:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_evolution_average_age" %>
 			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="num_employees_per_nationality_people" height="100" width="100"></canvas>
+			<!-- CHART 4:  -->
+			<div class="">
+				<%= render "pages/analytics/chart_num_employees_per_age_group" %>
 			</div>
+		</div>
+
+		<div class="title-header">
+			New employees evolution
+		</div>
+
+		<div class="charts-row">
+			<%= render "pages/analytics/chart_new_employees_per_month" %>
 		</div>
 
 	</div>
-	<div class="charts-row">
-		<!-- CHART 4: Num -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Evolution average age
-			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="evolution_average_age" height="100" width="100"></canvas>
-			</div>
-		</div>
 
-		<!-- CHART 1: Num. employees per division -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Num. employees per division
-			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="num_employees_per_division" height="100" width="100"></canvas>
-			</div>
-		</div>
-
-		<!-- CHART 3: Num. employees per age group -->
-		<div class="chart-wrapper">
-			<div class="title">
-				Num. employees per age group
-			</div>
-			<div class="canvas-wrapper-one-third">
-				<canvas id="num_employee_per_age_group_array" height="100" width="100"></canvas>
-			</div>
-		</div>
-	</div>
-
-	<div class="charts-row">
-		<!-- CHART 1: Num. employees per division -->
-		<div class="chart-wrapper">
-			<div class="title">
-				New Employees per month
-			</div>
-			<div class="canvas-wrapper-three-thirds">
-				<canvas id="new_employees_per_month" height="100" width="300"></canvas>
-			</div>
-		</div>
-	</div>
 </div>
 
-<script type="application/javascript">
-	<% content_for(:chart_js) do %>
-	  <%= javascript_tag do %>
-	  	// Chart 1: num employees per division
-	  	let attr = {
-	  		dataX: <%= @division_names %>,
-	  		dataY: <%= @num_employees_per_division %>,
-	  		id: "num_employees_per_division",
-	  		type: "bar",
-	  	}
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
 
-	  	// Chart 2: num employees per nationality
-	  	attr = {
-	  		dataX: <%= @nationalities_names %>,
-	  		dataY: <%= @num_employees_per_nationality %>,
-	  		id: "num_employees_per_nationality",
-	  		type: "bar",
-	  	}
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
 
-		// Chart 3: num employees per age group
-	  	attr = {
-	  		dataX: ["< 30", "31 - 40", "41 - 50", "51 - 65"],
-	  		dataY: <%= @num_employee_per_age_group_array %>,
-	  		id: "num_employee_per_age_group_array",
-	  		type: "bar",
-	  	}
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
 
-		// Chart 4: num employees per age group
-		let firstYearsDays = <%= @first_years_days %>;
-		let monthlyAgesAverages = <%= @monthly_ages_averages %>;
-		linearChartGenerator(firstYearsDays, monthlyAgesAverages);
 
-		// Chart 5: num_employees_per_nationality_engineering
-	  	attr = {
-	  		dataX: <%= @nationalities_names_engineering %>,
-	  		dataY: <%= @num_employees_per_nationality_engineering %>,
-	  		id: "num_employees_per_nationality_engineering",
-	  		type: "bar",
-	  	};
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
 
-		// Chart 6: num_employees_per_nationality_people
-	  	attr = {
-	  		dataX: <%= @nationalities_names_people %>,
-	  		dataY: <%= @num_employees_per_nationality_people %>,
-	  		id: "num_employees_per_nationality_people",
-	  		type: "bar",
-	  	};
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
 
-		// Chart 7: num_employees_per_nationality_people
-	  	attr = {
-	  		dataX: <%= @inc_months %>,
-	  		dataY: <%= @incorporations %>,
-	  		id: "new_employees_per_month",
-	  		type: "bar",
-	  	};
-		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
-		
-	  <% end %>
-	<% end %>
-</script>
+
 

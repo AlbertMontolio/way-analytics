@@ -4,18 +4,7 @@ class PagesController < ApplicationController
   include ChartsNationality
   skip_before_action :authenticate_user!, only: [:home]
   
-  # 1 we are in the analytics page, and i sign in, with email and password
-  # 2 once i sign in in the analytics, i make a request to the api from the way book.
-  # 3 and i send email and password
-  # 4 this last password we should encode it for security reasons. we don't seend the raw password
-  # 5 when the rquest gets to the api way book
-  # 6 way book will perform the normal devise log in using email and password
-  # create the sessions controller, update the routes
-  # decode the password, call super (super afterwards)
-  # then, 
-  # 7 if the login is succesfull, it should return the user token to the analytics app
-  # g
-  # 8 subsequent requests, will be made with email and token.
+  
 
   def analytics
     user_token = session["authentication_token"]
@@ -28,12 +17,12 @@ class PagesController < ApplicationController
 
     full_names = json_response.map { |profile_hash| "#{profile_hash["first_name"]} #{profile_hash["last_name"]}" }
 
+    # graph 1
     # employees per division
-  	divisions = json_response.map { |profile_hash| profile_hash["division"] }
-
-    items_counts = GetItemsCountsHashService.execute(divisions)
-    keys = items_counts.keys
-    totals = items_counts.map { |key, value| value }
+  	employee_divisions = json_response.map { |profile_hash| profile_hash["division"] }
+    counted_objects = CountObjectsInArrayService.execute(employee_divisions)
+    keys = counted_objects.keys
+    totals = counted_objects.map { |key, value| value }
 
     @division_names = keys.to_json.html_safe
     @division_names = ["WAY HR", "WAY People+", "WAY Engineering", "WAY IT"].to_json.html_safe
@@ -56,7 +45,7 @@ class PagesController < ApplicationController
     @nationalities_names_people = ChartsNationality.way_group_data_x(items_counts)
     @num_employees_per_nationality_people = ChartsNationality.way_group_data_y(items_counts).sort.reverse
 
-    # company average age
+    # # company average age
     active_employees = json_response.select { |hash| hash["endway"].nil? }
     birthdays = active_employees.map { |profile_hash| Date.parse(profile_hash["birthday"]) }
 

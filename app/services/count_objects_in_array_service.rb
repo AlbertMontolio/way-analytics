@@ -1,4 +1,4 @@
-class GetItemsCountsHashService
+class CountObjectsInArrayService
 	def initialize(attributes)
 		# @item = attributes
 	end

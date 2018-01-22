@@ -1,0 +1,27 @@
+<!-- CHART 1: Num. employees per division -->
+<div class="chart-wrapper">
+	<div class="title">
+		Num. employees per division
+	</div>
+	<div class="canvas-wrapper-one-third">
+		<canvas id="num_employees_per_division" height="100" width="100"></canvas>
+	</div>
+</div>
+
+<script type="application/javascript">
+	<% content_for(:chart_js) do %>
+	  <%= javascript_tag do %>
+	  	
+  	  	// Chart 1: num employees per division
+  	  	let attr = {
+  	  		dataX: <%= @division_names %>,
+  	  		dataY: <%= @num_employees_per_division %>,
+  	  		id: "num_employees_per_division",
+  	  		type: "bar",
+	  		xAxesTicksAutoSkip: true
+  	  	}
+  		chartBarGenerator(attr);
+		
+	  <% end %>
+	<% end %>
+</script>

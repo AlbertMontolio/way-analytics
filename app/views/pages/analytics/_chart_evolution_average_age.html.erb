@@ -1,0 +1,21 @@
+<div class="chart-wrapper">
+	<div class="title">
+		Evolution average age
+	</div>
+	<div class="canvas-wrapper-one-third">
+		<canvas id="evolution_average_age" height="100" width="100"></canvas>
+	</div>
+</div>
+
+<script type="application/javascript">
+	<% content_for(:chart_js) do %>
+	  <%= javascript_tag do %>
+	  	
+  	  	let firstYearsDays = <%= @first_years_days %>;
+		let monthlyAgesAverages = <%= @monthly_ages_averages %>;
+		linearChartGenerator(firstYearsDays, monthlyAgesAverages);
+		
+	  <% end %>
+	<% end %>
+</script>
+

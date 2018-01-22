@@ -1,0 +1,65 @@
+<script type="application/javascript">
+	<% content_for(:chart_js) do %>
+	  <%= javascript_tag do %>
+	  	// Chart 1: num employees per division
+	  	let attr = {
+	  		dataX: <%= @division_names %>,
+	  		dataY: <%= @num_employees_per_division %>,
+	  		id: "num_employees_per_division",
+	  		type: "bar",
+	  	}
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+
+	  	// Chart 2: num employees per nationality
+	  	attr = {
+	  		dataX: <%= @nationalities_names %>,
+	  		dataY: <%= @num_employees_per_nationality %>,
+	  		id: "num_employees_per_nationality",
+	  		type: "bar",
+	  	}
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+
+		// Chart 3: num employees per age group
+	  	attr = {
+	  		dataX: ["< 30", "31 - 40", "41 - 50", "51 - 65"],
+	  		dataY: <%= @num_employee_per_age_group_array %>,
+	  		id: "num_employee_per_age_group_array",
+	  		type: "bar",
+	  	}
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+
+		// Chart 4: num employees per age group
+		let firstYearsDays = <%= @first_years_days %>;
+		let monthlyAgesAverages = <%= @monthly_ages_averages %>;
+		linearChartGenerator(firstYearsDays, monthlyAgesAverages);
+
+		// Chart 5: num_employees_per_nationality_engineering
+	  	attr = {
+	  		dataX: <%= @nationalities_names_engineering %>,
+	  		dataY: <%= @num_employees_per_nationality_engineering %>,
+	  		id: "num_employees_per_nationality_engineering",
+	  		type: "bar",
+	  	};
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+
+		// Chart 6: num_employees_per_nationality_people
+	  	attr = {
+	  		dataX: <%= @nationalities_names_people %>,
+	  		dataY: <%= @num_employees_per_nationality_people %>,
+	  		id: "num_employees_per_nationality_people",
+	  		type: "bar",
+	  	};
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+
+		// Chart 7: num_employees_per_nationality_people
+	  	attr = {
+	  		dataX: <%= @inc_months %>,
+	  		dataY: <%= @incorporations %>,
+	  		id: "new_employees_per_month",
+	  		type: "bar",
+	  	};
+		chartBarGenerator(attr.dataX, attr.dataY, attr.id, attr.type);
+		
+	  <% end %>
+	<% end %>
+</script>

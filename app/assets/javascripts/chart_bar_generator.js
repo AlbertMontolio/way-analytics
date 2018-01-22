@@ -1,14 +1,18 @@
-const chartBarGenerator = (dataX, dataY, idChart, type) => {
-	var ctx = document.getElementById(idChart);
+const chartBarGenerator = (attr) => {
+	console.log("attr");
+	console.log(attr);
+	console.log("einnnnn");
+
+	var ctx = document.getElementById(attr.id);
 	// ctx.height = 100;
 	// ctx.width = 100;
 	var chart = new Chart(ctx, {
-	    type: type,
+	    type: attr.type,
 	    data: {
-	        labels: dataX,
+	        labels: attr.dataX,
 	        datasets: [{
 	            label: 'num. employees per division',
-	            data: dataY,
+	            data: attr.dataY,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.7)',
 	                'rgba(54, 162, 235, 0.7)',
@@ -69,11 +73,14 @@ const chartBarGenerator = (dataX, dataY, idChart, type) => {
 	                ticks: {
 	                    // beginAtZero:true,
 	                    fontColor: "black",
-	                    autoSkip: false
+	                    autoSkip: attr.xAxesTicksAutoSkip
 	                }
 	            }]
 	        }
 	    }
 	});
 }
+
+
+
 

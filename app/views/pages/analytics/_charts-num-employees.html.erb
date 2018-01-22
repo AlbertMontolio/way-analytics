@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<!-- CHART 1: Num. employees per nationality -->
+		<div class="chart-wrapper">
+			<div class="title">
+				Num. employees per nationality
+			</div>
+			<div class="canvas-wrapper-one-third">
+				<canvas id="num_employees_per_nationality" height="100" width="120"></canvas>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-6">
+		<!-- CHART 2: Num -->
+		<div class="chart-wrapper">
+			<div class="title">
+				Num. employees per nationality Engineering
+			</div>
+			<div class="canvas-wrapper-one-third">
+				<canvas id="num_employees_per_nationality_engineering" height="100" width="120"></canvas>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="application/javascript">
+	<% content_for(:chart_js) do %>
+	  <%= javascript_tag do %>
+	  	// Chart 1: num employees per nationality
+	  	attr = {
+	  		dataX: <%= @nationalities_names %>,
+	  		dataY: <%= @num_employees_per_nationality %>,
+	  		id: "num_employees_per_nationality",
+	  		type: "bar",
+	  		xAxesTicksAutoSkip: true
+	  	}
+		chartBarGenerator(attr);
+
+		// Chart 2: num_employees_per_nationality_engineering
+	  	attr = {
+	  		dataX: <%= @nationalities_names_engineering %>,
+	  		dataY: <%= @num_employees_per_nationality_engineering %>,
+	  		id: "num_employees_per_nationality_engineering",
+	  		type: "bar",
+	  		xAxesTicksAutoSkip: true
+	  	};
+	  	chartBarGenerator(attr);
+		
+	  <% end %>
+	<% end %>
+</script>

@@ -1,0 +1,26 @@
+<!-- CHART 1: Num. employees per division -->
+<div class="chart-wrapper">
+	<div class="title">
+		New Employees per month
+	</div>
+	<div class="canvas-wrapper-three-thirds">
+		<canvas id="new_employees_per_month" height="100" width="300"></canvas>
+	</div>
+</div>
+
+<script type="application/javascript">
+	<% content_for(:chart_js) do %>
+	  <%= javascript_tag do %>
+	  	
+  	  	attr = {
+	  		dataX: <%= @inc_months %>,
+	  		dataY: <%= @incorporations %>,
+	  		id: "new_employees_per_month",
+	  		type: "bar",
+	  		xAxesTicksAutoSkip: true
+	  	};
+		chartBarGenerator(attr);
+		
+	  <% end %>
+	<% end %>
+</script>
